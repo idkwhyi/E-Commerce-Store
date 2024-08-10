@@ -24,7 +24,7 @@ This is a full-stack e-commerce application designed as a personal store where u
 The application is not deployed at this time.
 
 **Getting Started:**
-1. Clone the repository: `git clone https://github.com/your-username/your-repo-name.git`
+1. Clone the repository: `https://github.com/idkwhyi/E-Commerce-Store`
 2. Install dependencies:
    - Frontend: `npm install`
    - Backend: `pip install -r requirements.txt`
