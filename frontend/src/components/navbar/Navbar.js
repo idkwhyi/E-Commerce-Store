@@ -20,7 +20,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className='poppins-regular navbar h-14 bg-softWhite text-deepCharcoal flex items-center justify-between px-20 text-lg'>
+    <nav className='poppins-regular navbar sticky top-0 h-14 bg-softWhite text-deepCharcoal flex items-center justify-between px-20 text-lg'>
       <NavLogo />
       <ul className='flex items-center justify-center'>
         <NavList
@@ -105,7 +105,7 @@ const Navbar = () => {
             </li> */}
             {/* <li><Link>Settings</Link></li> */}
             {/* <li><Link>Logout</Link></li> */}
-            <li><Link>Login</Link></li>
+            <li><Link to='/login'>Login</Link></li>
           </ul>
         </div>
       </div>
