@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 
 const Login = () => {
   return (
-    <main className='w-svw h-svh flex bg-gray-300 dark:bg-gray-800 items-center justify-center poppins-regular'>
-      <div className='w-3/4 h-4/6 bg-softWhite text-deepCharcoal dark:bg-deepCharcoal dark:text-softWhite flex items-center justify-center rounded-3xl p-5'>
+    <main className='w-svw h-svh flex bg-gray-300 items-center justify-center poppins-regular'>
+      <div className='w-3/4 h-4/6 bg-softWhite text-deepCharcoal flex items-center justify-center rounded-3xl p-5'>
         <section class="w-full h-full">
           <div class="container px-6 py-24 mx-auto lg:py-32">
             <div class="lg:flex">
@@ -14,33 +14,34 @@ const Login = () => {
                   <img class="object-cover" src={logo} alt="Native" />
                 </div>
 
-                <h1 class="mt-4 text-gray-600 dark:text-gray-300 md:text-lg">Welcome back</h1>
+                <h1 class="mt-4 text-gray-600 md:text-lg">Welcome back</h1>
 
-                <h1 class="mt-4 text-2xl font-medium text-gray-800 capitalize lg:text-3xl dark:text-white">
+                <h1 class="mt-4 text-2xl font-medium text-gray-800 capitalize lg:text-3xl">
                   login to your account
                 </h1>
+                <div className='poppins-regular mt-3 text-mutedBlue'>Dont have an account? <Link to='/register' className='hover:underline'>Create new account here.</Link></div>
               </div>
 
               <div class="mt-8 lg:w-1/2 lg:mt-0">
                 <form class="w-full lg:max-w-xl">
                   <div class="relative flex items-center">
                     <span class="absolute">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                       </svg>
                     </span>
 
-                    <input type="email" class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-coolGray dark:focus:freshMint focus:ring-fernGreen focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Email address" />
+                    <input type="email" class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 focus:border-coolGray focus:ring-fernGreen focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Email address" />
                   </div>
 
                   <div class="relative flex items-center mt-4">
                     <span class="absolute">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                       </svg>
                     </span>
 
-                    <input type="password" class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-coolGray dark:focus:freshMint focus:ring-fernGreen focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Password" />
+                    <input type="password" class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 focus:border-coolGray focus:ring-fernGreen focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Password" />
                   </div>
 
                   <div class="mt-8 md:flex md:items-center">
@@ -48,7 +49,7 @@ const Login = () => {
                       Sign in
                     </button>
 
-                    <Link to="#" class="inline-block mt-4 text-center text-mutedBlue md:mt-0 md:mx-6 hover:underline dark:text-coolGray">
+                    <Link to="#" class="inline-block mt-4 text-center text-mutedBlue md:mt-0 md:mx-6 hover:underline">
                       Forgot your password?
                     </Link>
                   </div>
