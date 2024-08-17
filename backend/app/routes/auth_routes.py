@@ -10,6 +10,8 @@ auth = Blueprint('auth', __name__)
 def register():
   data = request.get_json()
   
+  print("Recieved data: ", data)
+  
   hash_password = generate_password_hash(password=data['password'])
   new_user = User(
       username=data['username'], 

@@ -1,15 +1,56 @@
-import React from 'react'
+import React, { useState } from 'react'
 import logo from '../../assets/image/Logo.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const Login = () => {
+
+  const navigate = useNavigate()
+
+  const [userData, setUserData] = useState({
+    'username': '',
+    'password': ''
+  })
+
+  const [message, setMessage] = useState('')
+
+  const handleInputUserData = (e) => {
+    const { name, value } = e.target
+    setUserData(prevUserData => ({
+      ...prevUserData,
+      [name]: value
+    }))
+  }
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault()
+
+    try {
+      const response = await axios.post('http://127.0.0.1:5000/auth/login', {
+        'username': userData.username,
+        'password': userData.password
+      })
+      setMessage(response.data.message)
+      console.info(message)
+      navigate('/')
+
+    } catch (error) {
+      console.error(error.response.data.message)
+    }
+  }
+
+
+
   return (
     <main className='w-svw h-svh flex bg-gray-200 items-center justify-center poppins-regular'>
       <div className='w-3/4 h-4/6 bg-softWhite text-deepCharcoal flex items-center justify-center rounded-3xl p-5'>
-        <section class="w-full h-full">
-          <div class="container px-6 py-24 mx-auto lg:py-32">
-            <div class="lg:flex">
-              <div class="lg:w-1/2">
+        <section clasclassNames="w-full h-full">
+          <div className="container px-6 py-24 mx-auto lg:py-32">
+            <div className="lg:flex">
+              {/* image and some heading text */}
+              <div className="lg:w-1/2">
+
+                {/* image */}
                 <div className='p-2 py-3 bg-fernGreen rounded-md w-32'>
                   <img class="object-cover" src={logo} alt="Native" />
                 </div>
@@ -22,41 +63,61 @@ const Login = () => {
                 <div className='poppins-regular mt-3 text-mutedBlue'>Dont have an account? <Link to='/register' className='hover:underline'>Create new account here.</Link></div>
               </div>
 
-              <div class="mt-8 lg:w-1/2 lg:mt-0">
-                <form class="w-full lg:max-w-xl">
-                  <div class="relative flex items-center">
-                    <span class="absolute">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              <div className="mt-8 lg:w-1/2 lg:mt-0">
+                <form
+                  className="w-full lg:max-w-xl"
+                  onSubmit={handleFormSubmit}
+                >
+                  <div className="relative flex items-center mt-8">
+                    <span className="absolute">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-coolGray" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                       </svg>
                     </span>
 
-                    <input type="email" class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 focus:border-coolGray focus:ring-fernGreen focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Email address" />
+                    {/* username input field */}
+                    <input
+                      type="text"
+                      className="block w-full py-3 text-deepCharcoal bg-white border rounded-lg px-11 focus:border-fernGreen_400 focus:ring-fernGreen_300 focus:outline-none focus:ring focus:ring-opacity-40"
+                      placeholder="Username"
+                      name='username'
+                      onChange={handleInputUserData}
+                      value={userData.username}
+                    />
                   </div>
 
-                  <div class="relative flex items-center mt-4">
-                    <span class="absolute">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <div className="relative flex items-center mt-4">
+                    <span className="absolute">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-coolGray" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                       </svg>
                     </span>
 
-                    <input type="password" class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 focus:border-coolGray focus:ring-fernGreen focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Password" />
+                    {/* password input field */}
+                    <input
+                      type="password"
+                      className="block w-full py-3 text-deepCharcoal bg-white border rounded-lg px-11 focus:border-fernGreen_400 focus:ring-fernGreen_300 focus:outline-none focus:ring focus:ring-opacity-40"
+                      placeholder="Password"
+                      name='password'
+                      onChange={handleInputUserData}
+                      value={userData.password}
+                    />
                   </div>
 
-                  <div class="mt-8 md:flex md:items-center">
-                    <button class="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-100 transform bg-fernGreen rounded-lg md:w-1/2 hover:bg-gray-500 focus:outline-none focus:ring focus:ring-fernGreen focus:ring-opacity-50">
+                  <div className="mt-8 md:flex md:items-center">
+                    <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-100 transform bg-fernGreen rounded-lg md:w-1/2 hover:bg-gray-500 focus:outline-none focus:ring focus:ring-fernGreen focus:ring-opacity-50">
                       Sign in
                     </button>
 
-                    <Link to="/forgot_password" class="inline-block mt-4 text-center text-mutedBlue md:mt-0 md:mx-6 hover:underline">
+                    <Link to="/forgot_password" className="inline-block mt-4 text-center text-mutedBlue md:mt-0 md:mx-6 hover:underline">
                       Forgot your password?
                     </Link>
                   </div>
                 </form>
+                {message && <p>{message}</p>}
               </div>
             </div>
-            <div class="mt-8 md:mt-24 sm:flex sm:items-center">
+            <div className="mt-8 md:mt-24 sm:flex sm:items-center">
             </div>
           </div>
         </section>

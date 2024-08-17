@@ -21,9 +21,9 @@ def create_app():
       db.create_all()
 
     # Register Blueprints
-    # from .routes.auth_routes import auth
+    from .routes.auth_routes import auth
 
-    # app.register_blueprint(auth, url_prefix='/auth')
+    app.register_blueprint(auth, url_prefix='/auth')
 
 
     return app
