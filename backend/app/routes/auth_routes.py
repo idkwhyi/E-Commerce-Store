@@ -6,7 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash # hand
 auth = Blueprint('auth', __name__)
 
 # Register
-@auth.route('/register', method=['POST'])
+@auth.route('/register', methods=['POST'])
 def register():
   data = request.get_json()
   
@@ -26,7 +26,7 @@ def register():
   return jsonify({'message': 'User created successfully'}), 201
 
 # Login
-@auth.route('/login', method=['POST'])
+@auth.route('/login', methods=['POST'])
 def login():
   data = request.get_json()
   
@@ -40,7 +40,7 @@ def login():
   return jsonify({'message': 'Login successful', 'user_id': user.id}), 200
 
 # Reset password
-@auth.route('/reset_password', method=['POST'])
+@auth.route('/reset_password', methods=['POST'])
 def reset_password():
   data = request.get_json()
   username=data.get('username')

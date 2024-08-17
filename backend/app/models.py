@@ -14,8 +14,8 @@ class User(db.Model):
   address = db.Column(String(255), nullable=False)
   phone = db.Column(String(100), nullable=False)
   
-  review = relationship('Review', back_populates='user')
-  order = relationship('Order', back_populates='user')
+  reviews = relationship('Review', back_populates='user')
+  orders = relationship('Order', back_populates='user')
 
 class Category(db.Model):
   __tablename__ = 'category'
@@ -35,8 +35,8 @@ class Product(db.Model):
   image = db.Column(db.String(255))
 
   category = relationship('Category', back_populates='products')
-  review = relationship('Review', back_populates='product')
-  orderDetail = relationship('Order', back_populates='product')
+  reviews = relationship('Review', back_populates='product')
+  orderDetails = relationship('OrderDetail', back_populates='product')
 
 class Review(db.Model):
   __tablename__ = 'review'
@@ -48,6 +48,7 @@ class Review(db.Model):
 
   product = relationship('Product', back_populates='reviews')
   user = relationship('User', back_populates='reviews')
+
   
 class Order(db.Model):
   __tablename__ = 'order'
@@ -56,7 +57,7 @@ class Order(db.Model):
   orderDate = db.Column(DateTime, default=datetime.now, nullable=False)
   
   user = relationship('User', back_populates='orders')
-  orderDetail = relationship('OrderDetail', back_populates='order')
+  orderDetails = relationship('OrderDetail', back_populates='order')
   
 class OrderDetail(db.Model):
   __tablename__ = 'orderDetail'
