@@ -2,8 +2,7 @@ import React from 'react'
 
 const Register = () => {
   return (
-    <main>
-
+    <main className='poppins-regular'>
       <section class="bg-softWhite">
         <div class="flex justify-center min-h-screen">
           <div class="hidden bg-cover lg:block lg:w-2/5 bg-fernGreen object-cover ">

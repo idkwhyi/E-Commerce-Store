@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const Login = () => {
   return (
-    <main className='w-svw h-svh flex bg-gray-300 items-center justify-center poppins-regular'>
+    <main className='w-svw h-svh flex bg-gray-200 items-center justify-center poppins-regular'>
       <div className='w-3/4 h-4/6 bg-softWhite text-deepCharcoal flex items-center justify-center rounded-3xl p-5'>
         <section class="w-full h-full">
           <div class="container px-6 py-24 mx-auto lg:py-32">
@@ -49,17 +49,14 @@ const Login = () => {
                       Sign in
                     </button>
 
-                    <Link to="#" class="inline-block mt-4 text-center text-mutedBlue md:mt-0 md:mx-6 hover:underline">
+                    <Link to="/forgot_password" class="inline-block mt-4 text-center text-mutedBlue md:mt-0 md:mx-6 hover:underline">
                       Forgot your password?
                     </Link>
                   </div>
                 </form>
               </div>
             </div>
-
             <div class="mt-8 md:mt-24 sm:flex sm:items-center">
-
-
             </div>
           </div>
         </section>
