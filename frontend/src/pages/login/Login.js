@@ -44,9 +44,9 @@ const Login = () => {
   return (
     <main className='w-svw h-svh flex bg-gray-200 items-center justify-center poppins-regular'>
       <div className='w-3/4 h-4/6 bg-softWhite text-deepCharcoal flex items-center justify-center rounded-3xl p-5'>
-        <section clasclassNames="w-full h-full">
-          <div className="container px-6 py-24 mx-auto lg:py-32">
-            <div className="lg:flex">
+        <section clasclassNames="w-full h-full bg-green-200">
+          <div className="container w-full px-6 py-24 mx-auto lg:py-32">
+            <div className="lg:flex w-full gap-2">
               {/* image and some heading text */}
               <div className="lg:w-1/2">
 
@@ -104,14 +104,13 @@ const Login = () => {
                     />
                   </div>
 
-                  <div className="mt-8 md:flex md:items-center">
-                    <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-100 transform bg-fernGreen rounded-lg md:w-1/2 hover:bg-gray-500 focus:outline-none focus:ring focus:ring-fernGreen focus:ring-opacity-50">
+                  <div className="mt-2 md:flex md:items-center flex-col">
+                    <Link to="/forgot_password" className="w-full inline-block mb-2 text-right text-mutedBlue md:mt-0 md:mx-6 hover:underline">
+                      Forgot password?
+                    </Link>
+                    <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-100 transform bg-fernGreen rounded-lg md:w-full hover:bg-gray-500 focus:outline-none focus:ring focus:ring-fernGreen focus:ring-opacity-50">
                       Sign in
                     </button>
-
-                    <Link to="/forgot_password" className="inline-block mt-4 text-center text-mutedBlue md:mt-0 md:mx-6 hover:underline">
-                      Forgot your password?
-                    </Link>
                   </div>
                 </form>
                 {message && <p>{message}</p>}

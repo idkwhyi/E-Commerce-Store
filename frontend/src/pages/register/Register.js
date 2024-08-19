@@ -71,7 +71,7 @@ const Register = () => {
                   <label className="block mb-2 text-sm text-gray-600">Username</label>
                   <input 
                     type="text" 
-                    placeholder="John" 
+                    placeholder="Your username" 
                     className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-fernGreen focus:ring-fernGreen focus:outline-none focus:ring focus:ring-opacity-40" 
                     name='username'
                     onChange={handleInputUserData}
@@ -97,7 +97,7 @@ const Register = () => {
                   <label className="block mb-2 text-sm text-gray-600">Address</label>
                   <input 
                     type="text" 
-                    placeholder="123 Main Street North Jakarta" 
+                    placeholder="Your address" 
                     className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-fernGreen focus:ring-fernGreen focus:outline-none focus:ring focus:ring-opacity-40" 
                     name='address'
                     onChange={handleInputUserData}
