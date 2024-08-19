@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
 
 const Register = () => {
@@ -155,6 +155,10 @@ const Register = () => {
                 </button>
               </form>
               {message && <p>{message}</p>}
+              <div className='poppins-regular mt-3 text-mutedBlue'>
+                Already have an account?
+                <Link to='/login' className='hover:underline'> Login here.</Link>
+              </div>
             </div>
           </div>
         </div>

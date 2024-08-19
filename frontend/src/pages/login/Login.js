@@ -60,7 +60,9 @@ const Login = () => {
                 <h1 class="mt-4 text-2xl font-medium text-gray-800 capitalize lg:text-3xl">
                   login to your account
                 </h1>
-                <div className='poppins-regular mt-3 text-mutedBlue'>Dont have an account? <Link to='/register' className='hover:underline'>Create new account here.</Link></div>
+                <div className='poppins-regular mt-3 text-mutedBlue'>Dont have an account?
+                  <Link to='/register' className='hover:underline'> Create new account here.</Link>
+                </div>
               </div>
 
               <div className="mt-8 lg:w-1/2 lg:mt-0">
