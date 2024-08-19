@@ -37,7 +37,14 @@ def login():
   if not user or not check_password_hash(user.password, data['password']):
     return jsonify({'message': 'Invalid username or password'}), 401
   
-  return jsonify({'message': 'Login successful', 'user_id': user.userId}), 200 
+  return jsonify({
+    'message': 'Login successful', 
+    'user_id': user.userId, 
+    'username': user.username,
+    'email': user.email,
+    'address': user.address,
+    'phone': user.phone
+  }), 200 
 
 # Reset password
 @auth.route('/reset_password', methods=['POST'])

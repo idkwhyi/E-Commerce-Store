@@ -7,7 +7,7 @@ import NavList from './NavList';
 
 
 
-const Navbar = () => {
+const Navbar = ({ username }) => {
   // Array to track hover state for each list item
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
@@ -88,15 +88,18 @@ const Navbar = () => {
         {/* profile */}
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img
+            {/* <img
                 alt="Tailwind CSS Navbar component"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" /> */}
+            <div className="w-10 h-10 rounded-full border border-coolGray">
+              <div className='w-full h-full flex items-center justify-center text-center text-xl '>
+                {username ? username.slice(0, 1).toUpperCase() : "O"}
+              </div>
             </div>
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+            className="menu menu-sm dropdown-content rounded-box z-[1] mt-3 w-52 p-2 shadow text-deepCharcoal bg-softWhite">
             {/* <li>
               <Link className="justify-between">
                 Profile
@@ -105,7 +108,7 @@ const Navbar = () => {
             </li> */}
             {/* <li><Link>Settings</Link></li> */}
             {/* <li><Link>Logout</Link></li> */}
-            <li><Link to='/login'>Login</Link></li>
+            <li><Link to='/login' className='bg-softWhite'>Login</Link></li>
           </ul>
         </div>
       </div>

@@ -3,7 +3,7 @@ import logo from '../../assets/image/Logo.png'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-const Login = () => {
+const Login = ({ setLoginStatus, setUser }) => {
 
   const navigate = useNavigate()
 
@@ -22,6 +22,7 @@ const Login = () => {
     }))
   }
 
+
   const handleFormSubmit = async (e) => {
     e.preventDefault()
 
@@ -32,6 +33,22 @@ const Login = () => {
       })
       setMessage(response.data.message)
       console.info(message)
+
+      console.info(response.data)
+      
+      // set login status
+      setLoginStatus(true)
+
+      // set user data
+      setUser({
+        'userId': response.data.user_id,
+        'username': response.data.username,
+        'email': response.data.email,
+        // 'password': '',
+        'address': response.data.address,
+        'phone': response.data.phone
+      })
+      
       navigate('/')
 
     } catch (error) {
@@ -44,7 +61,7 @@ const Login = () => {
   return (
     <main className='w-svw h-svh flex bg-gray-200 items-center justify-center poppins-regular'>
       <div className='w-3/4 h-4/6 bg-softWhite text-deepCharcoal flex items-center justify-center rounded-3xl p-5'>
-        <section clasclassNames="w-full h-full bg-green-200">
+        <section className="w-full h-full">
           <div className="container w-full px-6 py-24 mx-auto lg:py-32">
             <div className="lg:flex w-full gap-2">
               {/* image and some heading text */}
@@ -52,12 +69,12 @@ const Login = () => {
 
                 {/* image */}
                 <div className='p-2 py-3 bg-fernGreen rounded-md w-32'>
-                  <img class="object-cover" src={logo} alt="Native" />
+                  <img className="object-cover" src={logo} alt="Native" />
                 </div>
 
-                <h1 class="mt-4 text-gray-600 md:text-lg">Welcome back</h1>
+                <h1 className="mt-4 text-gray-600 md:text-lg">Welcome back</h1>
 
-                <h1 class="mt-4 text-2xl font-medium text-gray-800 capitalize lg:text-3xl">
+                <h1 className="mt-4 text-2xl font-medium text-gray-800 capitalize lg:text-3xl">
                   login to your account
                 </h1>
                 <div className='poppins-regular mt-3 text-mutedBlue'>Dont have an account?
@@ -72,8 +89,8 @@ const Login = () => {
                 >
                   <div className="relative flex items-center mt-8">
                     <span className="absolute">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-coolGray" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 mx-3 text-coolGray" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                       </svg>
                     </span>
 
@@ -90,8 +107,8 @@ const Login = () => {
 
                   <div className="relative flex items-center mt-4">
                     <span className="absolute">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-coolGray" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 mx-3 text-coolGray" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                       </svg>
                     </span>
 
