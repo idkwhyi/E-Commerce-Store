@@ -7,7 +7,7 @@ import NavList from './NavList';
 
 
 
-const Navbar = ({ username }) => {
+const Navbar = ({ username, loginStatus, setLoginStatus }) => {
   // Array to track hover state for each list item
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
@@ -18,6 +18,10 @@ const Navbar = ({ username }) => {
   const handleMouseLeave = () => {
     setHoveredIndex(null);
   };
+
+  const handleLogoutClick = () => {
+    setLoginStatus(false)
+  }
 
   return (
     <nav className='poppins-regular navbar sticky top-0 h-14 bg-softWhite text-deepCharcoal flex items-center justify-between px-20 text-lg'>
@@ -107,8 +111,29 @@ const Navbar = ({ username }) => {
               </Link>
             </li> */}
             {/* <li><Link>Settings</Link></li> */}
-            {/* <li><Link>Logout</Link></li> */}
-            <li><Link to='/login' className='bg-softWhite'>Login</Link></li>
+
+            {
+              loginStatus ? (
+                <li>
+                  <Link
+                    onClick={handleLogoutClick}
+                    className='bg-softWhite'
+                  >
+                    Logout
+                  </Link>
+                </li>
+              ) : (
+                <li>
+                  <Link
+                    to='/login'
+                    className='bg-softWhite'
+                  >
+                    Login
+                  </Link>
+                </li>
+              )
+            }
+
           </ul>
         </div>
       </div>

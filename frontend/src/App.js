@@ -24,7 +24,7 @@ function App() {
   return (
       <Router>
         <Routes>
-          <Route path='/' element={<Home userData={user}/>} />
+          <Route path='/' element={<Home userData={user} loginStatus={loginStatus} setLoginStatus={setLoginStatus}/>} />
           <Route path='/login' element={<Login setLoginStatus={setLoginStatus} setUser={setUser}/>} />
           <Route path='/register' element={<Register/>} />
           <Route path='/forgot_password' element={<ForgotPassword/>} />

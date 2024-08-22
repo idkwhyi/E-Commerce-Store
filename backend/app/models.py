@@ -16,6 +16,12 @@ class User(db.Model):
   
   reviews = relationship('Review', back_populates='user')
   orders = relationship('Order', back_populates='user')
+  
+  def __repr__(self):
+    return f'<User: {self.username}, Email: {self.email}>'
+  
+  def get_id(self):
+    return self.userId
 
 class Category(db.Model):
   __tablename__ = 'category'
