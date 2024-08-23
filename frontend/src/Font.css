@@ -1,3 +1,44 @@
+/* Define a class that allows dynamic font weight and style */
+.roboto-slab {
+  font-family: "Roboto Slab", serif;
+  font-optical-sizing: auto;
+  font-style: var(--font-style, normal);
+  font-weight: var(--font-weight, 400); /* Default to regular weight */
+}
+
+
+.roboto-slab-regular {
+  font-family: "Roboto Slab", serif;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.roboto-slab-medium {
+  font-family: "Roboto Slab", serif;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.roboto-slab-semibold {
+  font-family: "Roboto Slab", serif;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.roboto-slab-bold {
+  font-family: "Roboto Slab", serif;
+  font-style: normal;
+  font-weight: 700;
+}
+
+
+
+/* Example for light weight */
+.roboto-slab-light {
+  --font-weight: 300;
+}
+
+
 .poppins-thin {
   font-family: "Poppins", sans-serif;
   font-weight: 100;
@@ -105,3 +146,5 @@
   font-weight: 900;
   font-style: italic;
 }
+
+

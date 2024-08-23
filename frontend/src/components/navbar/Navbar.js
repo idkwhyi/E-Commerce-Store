@@ -24,7 +24,7 @@ const Navbar = ({ username, loginStatus, setLoginStatus }) => {
   }
 
   return (
-    <nav className='poppins-regular navbar sticky top-0 h-14 bg-softWhite text-deepCharcoal flex items-center justify-between px-20 text-lg'>
+    <nav className='poppins-regular navbar sticky top-0 h-14 bg-softWhite text-deepCharcoal flex items-center justify-between px-20 text-lg border-b border-b-coolGray'>
       <NavLogo />
       <ul className='flex items-center justify-center'>
         <NavList
