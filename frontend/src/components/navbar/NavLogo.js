@@ -1,11 +1,22 @@
 // import logoImage from '../../assets/image/Logo.png'
+import { Link, useNavigate } from "react-router-dom"
 
 const NavLogo = () => {
+  const navigate = useNavigate()
+
+  const handleLogoClicked = () => {
+    console.info('logo clicked')
+    navigate('/')
+  }
+
   return (
-    <div className='max-w-28 h-full p-3 poppins-bold flex items-center justify-center'>
+    <Link
+      className='max-w-32 h-full p-3 poppins-bold text-2xl flex items-center justify-center' 
+      onClick={handleLogoClicked}
+    >
       {/* <img src={logoImage} alt="Native"/> */}
       Native
-    </div>
+    </Link>
   )
 }
 

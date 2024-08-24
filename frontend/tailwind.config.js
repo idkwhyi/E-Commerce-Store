@@ -11,7 +11,7 @@ module.exports = {
         mutedBlue: '#6C757D', // accent color for button and link
         freshMint: '#20C997', // pop color for CTA elements
         deepCharcoal: '#343A40', // main text and strong contras element
-        
+        softBlack: '#212121',
         fernGreen_900: '#223224',
         fernGreen_800: '#293c2b',
         fernGreen_700: '#3d5e3f',

@@ -6,7 +6,7 @@ const NavList = ({ listName, linkTo, index, hoveredIndex, onMouseEnter, onMouseL
   return (
     <li
       className={`w-32 text-base poppins-regular flex items-center justify-center ${hoveredIndex == null && 'text-deepCharcoal'
-        } ${isHovered ? 'text-deepCharcoal' : 'text-coolGray'}`}
+        } ${isHovered ? 'text-deepCharcoal' : 'text-coolGray'} transition-colors duration-300 ease-in-out`}
       onMouseEnter={() => onMouseEnter(index)}
       onMouseLeave={onMouseLeave}
     >
