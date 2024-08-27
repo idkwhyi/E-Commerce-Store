@@ -1,6 +1,6 @@
 import React from 'react'
 
-const HeroList = () => {
+const NewProduct = () => {
   return (
     <li className='roboto-slab-regular w-1/3 h-full p-7 flex flex-col justify-between gap-12 rounded-xl border border-softWhite hover:bg-softWhite hover:text-deepCharcoal transition-colors duration-300 ease-in-out'>
       <div className='w-full flex justify-between'>
@@ -10,7 +10,7 @@ const HeroList = () => {
       <div className='w-full flex flex-col'>
         <div className='w-full flex gap-5'>
           <span className='min-w-[30%]'>TYPE</span>
-          <span className= 'w-full'>PRODUCT TYPE</span>
+          <span className='w-full'>PRODUCT TYPE</span>
         </div>
         <div className='w-full flex gap-5'>
           <span className='min-w-[30%]'>ORIGIN</span>
@@ -21,9 +21,9 @@ const HeroList = () => {
           <span className='w-full'>PRODUCT PROCESS</span>
         </div>
       </div>
-      
+
     </li>
   )
 }
 
-export default HeroList
+export default NewProduct

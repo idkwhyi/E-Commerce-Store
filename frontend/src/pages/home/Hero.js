@@ -1,6 +1,6 @@
 import React from 'react'
 import '../../Font.css'
-import HeroList from '../../components/list/HeroList'
+import NewProduct from '../../components/list/NewProduct'
 import HoldingPlantSvg from '../../components/svg/HoldingPlantSvg'
 import ArrowTop from '../../components/svg/ArrowTop'
 import RegularButton from '../../components/buttons/RegularButton'
@@ -25,9 +25,9 @@ const Hero = () => {
         </div>
         <div className='flex flex-col w-full'>
           <ul className='flex h-full'>
-            <HeroList />
-            <HeroList />
-            <HeroList />
+            <NewProduct />
+            <NewProduct />
+            <NewProduct />
           </ul>
           <div className='roboto-slab-bold text-xl p-5 px-10 border border-softWhite rounded-xl flex items-center justify-center'>
             <ArrowTop/>
