@@ -8,7 +8,7 @@ const Footer = () => {
     <footer className='roboto-slab-regular w-full h-auto bg-softBlack text-softWhite p-10'>
       <div className='w-full flex justify-between py-20'>
         <div className='h-auto flex flex-col gap-5'>
-          <h2 className='roboto-slab-medium text-4xl text-coolGray'>CONTACT US HERE</h2>
+          <h2 className='roboto-slab-medium text-4xl text-coolGray'>LET'S CONNECT</h2>
           <Link className='poppins-medium text-2xl hover:text-mutedBlue transition-colors duration-300 ease-in-out' to='mailto:company@example.com'>companyemail@gmail.com</Link>
         </div>
         <div className='w-max flex justify-end px-20 gap-24'>

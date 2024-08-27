@@ -1,8 +1,9 @@
 import React from 'react'
 import '../../Font.css'
-import HeroList from '../../components/home/HeroList'
+import HeroList from './HeroList'
 import HoldingPlantSvg from '../../components/svg/HoldingPlantSvg'
 import ArrowTop from '../../components/svg/ArrowTop'
+import RegularButton from '../../components/buttons/RegularButton'
 
 const Hero = () => {
   return (
@@ -11,7 +12,7 @@ const Hero = () => {
         <h1 style={{ fontSize: '15rem', lineHeight: '1' }} className='roboto-slab-bold w-2/3 h-fit pl-12'>Choose Green, Live Clean.</h1>
         <div className='w-auto h-auto flex flex-col justify-end items-start gap-10 bg-transparent'>
           <h3 className='roboto-slab-bold text-xl w-3/4 h-fit'>EMBRACE EVERY MOMENT WITH OUR THOUGHTFULLY CRAFTED ECO-FRIENDLY PRODUCTS, DESIGNED TO ENCHANCE YOUR LIFESTYLE AND CARE FOR THE PLANET.</h3>
-          <button className='roboto-slab-bold p-1 rounded-sm bg-softWhite text-deepCharcoal text-2xl hover:bg-deepCharcoal hover:text-softWhite transition-colors duration-300 ease-in-out'>SHOP NOW</button>
+          <RegularButton buttonText={'SHOP NOW'} navigateTo={'#'}/>
         </div>
       </div>
       <div className='w-full h-full bg-transparent px-12 pb-12 flex text-white'>
