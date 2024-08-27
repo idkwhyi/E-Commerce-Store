@@ -11,8 +11,8 @@ const Products = () => {
           View All
         </div>
       </div>
-      <div style={{ height: '100vh' }} className='w-full'>
-        <div className='w-full h-full flex'>
+      <div style={{ height: '150vh' }} className='w-full bg-blue-300'>
+        <div style={{maxHeight: '100vh'}} className='w-full h-full flex'>
           <div
             style={{
               backgroundImage: "url('https://images.unsplash.com/photo-1557687790-902ede7ab58c?q=80&w=2800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
@@ -40,6 +40,11 @@ const Products = () => {
           <div className='poppins-regular w-2/5 h-full text-lg p-5 pb-0 flex flex-col items-start justify-end'>
               <h3 className='roboto-slab-bold text-5xl py-3'>PRODUCT CATEGORIES</h3>
               <p className='text-md'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam at iusto voluptatum labore, repellendus ipsa cum eligendi eum temporibus in officia esse beatae nisi! Aliquam, laboriosam! Dolor non voluptatum animi.</p>
+          </div>
+        </div>
+        <div className='w-full h-full bg-green-200'>
+          <div>
+            
           </div>
         </div>
       </div>

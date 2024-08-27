@@ -1,6 +1,6 @@
 import React from 'react'
 import '../../Font.css'
-import HeroList from './HeroList'
+import HeroList from '../../components/list/HeroList'
 import HoldingPlantSvg from '../../components/svg/HoldingPlantSvg'
 import ArrowTop from '../../components/svg/ArrowTop'
 import RegularButton from '../../components/buttons/RegularButton'
