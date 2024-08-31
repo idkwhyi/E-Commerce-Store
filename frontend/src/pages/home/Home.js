@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from '../../components/navbar/Navbar'
 import Hero from './Hero'
 import Products from './Products'
-import Introduction from './Introduction'
+// import Introduction from './Introduction'
 import Footer from '../../components/footer/Footer'
 
 
@@ -13,7 +13,7 @@ const Home = ({ userData, loginStatus, setLoginStatus }) => {
       <main className='h-max'>
         <Hero />
         <Products />
-        <Introduction />
+        {/* <Introduction /> */}
         <Footer />
       </main>
     </div>
