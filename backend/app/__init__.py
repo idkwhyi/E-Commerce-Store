@@ -4,9 +4,11 @@ from flask_login import LoginManager
 from flask_cors import CORS
 from flask_migrate import Migrate
 import jwt
+from flask_praetorian import Praetorian
 
 db = SQLAlchemy()
 migrate = Migrate()
+guard = Praetorian()
 
 def create_app():
     app = Flask(__name__)
@@ -18,6 +20,15 @@ def create_app():
     # Initialize the database
     db.init_app(app)
     migrate.init_app(app, db)
+    
+    # Initialize JWT
+    app.config['SECRET_KEY'] = 'secret'
+    app.config['JWT_ACCESS_LIFESPAN'] = {'hours': 24}
+    app.config['JWT_REFRESH_LIFESPAN'] = {'days': 30}
+    
+    # Initialize Praetorian
+    from .models import User
+    guard.init_app(app, User)
 
     # Automaticly creating the models
     with app.app_context():

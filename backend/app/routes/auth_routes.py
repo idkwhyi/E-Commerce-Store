@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from ..models import User
-from .. import db # import db from __init__.py
+from .. import db, guard # import from __init__.py
 from werkzeug.security import generate_password_hash, check_password_hash # handle password hashing
 
 auth = Blueprint('auth', __name__)
@@ -12,18 +12,30 @@ def register():
   
   print("Recieved data: ", data)
   
-  hash_password = generate_password_hash(password=data['password'])
-  new_user = User(
-      username=data['username'], 
-      email=data['email'],
-      password=hash_password,
-      address=data['address'],
-      phone=data['phone']
-    )
+  existing_by_username = User.query.filter_by(username=data['username']).first()
+  existing_by_email = User.query.filter_by(email=data['email']).first()
   
+  if existing_by_username:
+    return jsonify({'message': 'Username already exists'}), 400
+  
+  if existing_by_email:
+    return jsonify({'message': 'Email is already been used'}), 400
+  
+  hashed_password = guard.hash_password(data['password'])
+  print("hashed password: ", hashed_password)
+  # Create a new user
+  new_user = User(
+    username=data['username'],
+    email=data['email'],
+    password=hashed_password,
+    address=data['address'],
+    phone=data['phone'],
+    roles=','.join(data['roles'])  # Convert list of roles to a comma-separated string
+  )
   db.session.add(new_user)
   db.session.commit()
-  return jsonify({'message': 'User created successfully'}), 201
+    
+  return jsonify({'message': 'User registered successfully'}), 201
 
 # Login
 @auth.route('/login', methods=['POST'])

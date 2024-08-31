@@ -10,9 +10,11 @@ class User(db.Model):
   userId = db.Column(CHAR(36), primary_key=True, default=lambda: str(uuid.uuid4()), unique=True, nullable=False)
   username = db.Column(String(200), unique=True, nullable=False)
   email = db.Column(String(150), unique=True, nullable=False)
-  password = db.Column(String(200), nullable=False)
+  password = db.Column(String(255), nullable=False)
   address = db.Column(String(255), nullable=False)
   phone = db.Column(String(100), nullable=False)
+  roles = db.Column(String(255))
+  is_active = db.Column(db.Boolean, default=True)
   
   reviews = relationship('Review', back_populates='user')
   orders = relationship('Order', back_populates='user')
@@ -20,8 +22,30 @@ class User(db.Model):
   def __repr__(self):
     return f'<User: {self.username}, Email: {self.email}>'
   
-  def get_id(self):
+  @property
+  def roles_name(self):
+    if self.roles:
+      return self.roles.split(',')
+    return []
+  
+  @property
+  def rolenames(self):
+    return self.roles_name
+  
+  @classmethod
+  def lookup(cls, username):
+    return cls.query.filter_by(username=username).one_or_none()
+  
+  @classmethod
+  def identify(cls, id):
+    return cls.query.get(id)
+  
+  @property
+  def identity(self):
     return self.userId
+  
+  def is_valid(self):
+    return self.is_active
 
 class Category(db.Model):
   __tablename__ = 'category'

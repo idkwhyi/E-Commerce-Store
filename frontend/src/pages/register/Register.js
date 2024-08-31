@@ -11,7 +11,8 @@ const Register = () => {
     'email': '',
     'password': '',
     'address': '',
-    'phone': ''
+    'phone': '',
+    'roles': ['user'],
   })
   const [confirmPassword, setConfirmPassword] = useState('')
 
@@ -32,12 +33,14 @@ const Register = () => {
           'email': userData.email,
           'password': userData.password,
           'address': userData.address,
-          'phone': userData.phone
+          'phone': userData.phone,
+          'roles': userData.roles
         });
         setMessage(response.data.message)
         console.log('Message:', message)
         navigate('/login')
       } catch (error) {
+        setMessage(error.response?.data?.message || 'An error occurred. Please try again.')
         console.error(error.response.data.message)
       }
     } else {
@@ -154,11 +157,11 @@ const Register = () => {
                   </svg>
                 </button>
               </form>
-              {message && <p>{message}</p>}
               <div className='poppins-regular mt-3 text-mutedBlue'>
                 Already have an account?
                 <Link to='/login' className='hover:underline'> Login here.</Link>
               </div>
+              {message && <p className='text-red-500 mt-5'>{message}</p>}
             </div>
           </div>
         </div>
