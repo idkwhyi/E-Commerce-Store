@@ -6,10 +6,10 @@ import Products from './Products'
 import Footer from '../../components/footer/Footer'
 
 
-const Home = ({ userData, loginStatus, setLoginStatus }) => {
+const Home = () => {
   return (
     <div className='bg-softWhite h-auto flex flex-col'>
-      <Navbar username={userData.username} loginStatus={loginStatus} setLoginStatus={setLoginStatus} />
+      <Navbar />
       <main className='h-max'>
         <Hero />
         <Products />

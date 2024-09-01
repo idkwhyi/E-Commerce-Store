@@ -2,17 +2,18 @@ import React, { useState } from 'react'
 import logo from '../../assets/image/Logo.png'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { useUser } from '../../context/UserContext'
+import { DecodeJWT } from '../../utils/DecodeJWT'
 
-const Login = ({ setLoginStatus, setUser }) => {
+const Login = () => {
 
   const navigate = useNavigate()
-
   const [userData, setUserData] = useState({
     'username': '',
     'password': ''
   })
-
   const [message, setMessage] = useState('')
+  const { setUser, setLoginStatus } = useUser()
 
   const handleInputUserData = (e) => {
     const { name, value } = e.target
@@ -22,7 +23,6 @@ const Login = ({ setLoginStatus, setUser }) => {
     }))
   }
 
-
   const handleFormSubmit = async (e) => {
     e.preventDefault()
 
@@ -31,26 +31,28 @@ const Login = ({ setLoginStatus, setUser }) => {
         'username': userData.username,
         'password': userData.password
       })
-      setMessage(response.data.message)
-      console.info(message)
 
-      console.info(response.data)
-      
-      // set login status
+      const token = response.data.access_token
+      console.info(token)
+
+      localStorage.setItem('token', token)
+
+      const userInfo = DecodeJWT()
+
+      if (userInfo) {
+        setUser({
+          'id': userInfo.id,
+          'rls': userInfo.rls
+        })
+        console.log('user info: ', userInfo)
+      }
+
       setLoginStatus(true)
 
-      // set user data
-      setUser({
-        'userId': response.data.user_id,
-        'username': response.data.username,
-        'email': response.data.email,
-        // 'password': '',
-        'address': response.data.address,
-        'phone': response.data.phone
-      })
+      setMessage(response.data.message)
+      console.info(message)
       
       navigate('/')
-
     } catch (error) {
       console.error(error.response.data.message)
     }
@@ -69,7 +71,7 @@ const Login = ({ setLoginStatus, setUser }) => {
 
                 {/* image */}
                 <div className='p-2 py-3 bg-fernGreen rounded-md w-32'>
-                  <img className="object-cover" src={logo} alt="Native" />
+                  <img className="object-cover" src={logo} alt="Native" onClick={() => {navigate('/')}} />
                 </div>
 
                 <h1 className="mt-4 text-gray-600 md:text-lg">Welcome back</h1>

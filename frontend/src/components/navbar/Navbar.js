@@ -3,13 +3,16 @@ import { Link } from 'react-router-dom';
 import '../../Font.css';
 import NavLogo from './NavLogo';
 import NavList from './NavList';
+import { useUser } from '../../context/UserContext';
 // import profileImg from '../../assets/image/profile.png';
 
 
 
-const Navbar = ({ username, loginStatus, setLoginStatus }) => {
+const Navbar = () => {
   // Array to track hover state for each list item
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [loginStatus, setLoginStatus] = useState(false)
+  const { user } =  useUser()
 
   const handleMouseEnter = (index) => {
     setHoveredIndex(index);
@@ -20,7 +23,8 @@ const Navbar = ({ username, loginStatus, setLoginStatus }) => {
   };
 
   const handleLogoutClick = () => {
-    setLoginStatus(false)
+    setLoginStatus(!loginStatus)
+    console.log("log out")
   }
 
   return (
@@ -97,7 +101,7 @@ const Navbar = ({ username, loginStatus, setLoginStatus }) => {
                 src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" /> */}
             <div className="w-10 h-10 rounded-full border border-coolGray">
               <div className='w-full h-full flex items-center justify-center text-center text-xl '>
-                {username ? username.slice(0, 1).toUpperCase() : "O"}
+                {user.username ? user.username.slice(0, 1).toUpperCase() : "O"}
               </div>
             </div>
           </div>
