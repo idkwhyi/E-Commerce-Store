@@ -3,8 +3,7 @@ from flask_sqlalchemy import SQLAlchemy #type: ignore
 from flask_login import LoginManager
 from flask_cors import CORS
 from flask_migrate import Migrate
-import jwt
-from flask_praetorian import Praetorian
+from flask_praetorian import Praetorian, PraetorianError
 
 db = SQLAlchemy()
 migrate = Migrate()

@@ -1,4 +1,12 @@
-from sqlalchemy import Column, String, ForeignKey, Numeric, Integer, CheckConstraint, DateTime
+from sqlalchemy import (
+  Column, 
+  String, 
+  ForeignKey, 
+  Numeric, 
+  Integer, 
+  CheckConstraint, 
+  DateTime
+)
 from sqlalchemy.dialects.mysql import CHAR
 from sqlalchemy.orm import relationship
 from datetime import datetime

@@ -1,6 +1,10 @@
 from flask import Blueprint, jsonify, request
 from ..models import User
-from .. import db, guard # import from __init__.py
+from .. import (
+  db, 
+  guard, 
+  PraetorianError
+) # import from __init__.py
 from werkzeug.security import generate_password_hash, check_password_hash # handle password hashing
 
 auth = Blueprint('auth', __name__)
@@ -43,20 +47,25 @@ def login():
   data = request.get_json()
   
   print('Received login data:', data)
-
-  user = User.query.filter_by(username=data['username']).first()
-    
-  if not user or not check_password_hash(user.password, data['password']):
-    return jsonify({'message': 'Invalid username or password'}), 401
   
-  return jsonify({
-    'message': 'Login successful', 
-    'user_id': user.userId, 
-    'username': user.username,
-    'email': user.email,
-    'address': user.address,
-    'phone': user.phone
-  }), 200 
+  try:
+    user = guard.authenticate(username=data['username'], password=data['password'])
+    token = guard.encode_jwt_token(user=user)
+    return jsonify({
+      'message': 'User login success',
+      'access_token': token
+    }), 200
+  except PraetorianError as e:
+    return jsonify({'message': str(e)}), 401
+
+@auth.route('/refresh', methods=['POST'])
+def refresh():
+  print("Refresh request")
+  old_token = request.get_json()
+  new_token = guard.refresh_jwt_token(old_token)
+  
+  return jsonify({'access_token': new_token}), 200
+  
 
 # Reset password
 @auth.route('/reset_password', methods=['POST'])
