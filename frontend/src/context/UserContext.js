@@ -6,7 +6,14 @@ const UserContext = createContext();
 
 // UserProvider component
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({
+    'id': '',
+    'username': '',
+    'email': '',
+    'address': '',
+    'phone': '',
+    'roles': '',
+  });
   const [loginStatus, setLoginStatus] = useState(false)
   
   return (

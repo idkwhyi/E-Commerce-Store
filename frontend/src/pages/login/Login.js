@@ -42,22 +42,45 @@ const Login = () => {
       if (userInfo) {
         setUser({
           'id': userInfo.id,
-          'rls': userInfo.rls
+          'roles': userInfo.rls
         })
         console.log('user info: ', userInfo)
+      }
+
+      try {
+        // Fetch additional user data using the decoded ID
+        const userResponse = await axios.post('http://127.0.0.1:5000/user/userData', {
+          'id': userInfo.id
+        });
+
+        if (userResponse && userResponse.status === 200) {
+          const { username, email, address, phone } = userResponse.data;
+
+          setUser(prevUser => ({
+            ...prevUser,
+            'username': username,
+            'email': email,
+            'address': address,
+            'phone': phone
+          }));
+
+        } else {
+          console.error('Failed to fetch user data:', userResponse.data.message);
+        }
+      } catch (userError) {
+        console.error('Error fetching user data:', userError.message);
       }
 
       setLoginStatus(true)
 
       setMessage(response.data.message)
       console.info(message)
-      
+
       navigate('/')
     } catch (error) {
       console.error(error.response.data.message)
     }
   }
-
 
 
   return (
@@ -71,7 +94,7 @@ const Login = () => {
 
                 {/* image */}
                 <div className='p-2 py-3 bg-fernGreen rounded-md w-32'>
-                  <img className="object-cover" src={logo} alt="Native" onClick={() => {navigate('/')}} />
+                  <img className="object-cover" src={logo} alt="Native" onClick={() => { navigate('/') }} />
                 </div>
 
                 <h1 className="mt-4 text-gray-600 md:text-lg">Welcome back</h1>
