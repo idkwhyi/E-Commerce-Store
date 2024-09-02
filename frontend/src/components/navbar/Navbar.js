@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../../Font.css';
 import NavLogo from './NavLogo';
 import NavList from './NavList';
@@ -11,22 +11,24 @@ import { useUser } from '../../context/UserContext';
 const Navbar = () => {
   // Array to track hover state for each list item
   const [hoveredIndex, setHoveredIndex] = useState(null);
-  // const [loginStatus, setLoginStatus] = useState(false)
-  const { user, loginStatus, setLoginStatus } =  useUser()
+  const { user, loginStatus, logout } = useUser() // UserContext
+
+  const navigate = useNavigate()
 
   // navlist hover animation mouse enter
   const handleMouseEnter = (index) => {
     setHoveredIndex(index);
   };
-  
+
   // navlist hover animation mouse leave
   const handleMouseLeave = () => {
     setHoveredIndex(null);
   };
 
+  // Function to handle log out 
   const handleLogoutClick = () => {
-    setLoginStatus(false)
-    console.log("log out")
+    logout()
+    navigate('/')
   }
 
   return (
@@ -103,7 +105,7 @@ const Navbar = () => {
                 src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" /> */}
             <div className="w-10 h-10 rounded-full border border-coolGray">
               <div className='w-full h-full flex items-center justify-center text-center text-xl '>
-                {user.username ? user.username.slice(0, 1).toUpperCase() : "O"}
+                {user.username ? user.username.slice(0, 1).toUpperCase() : "#"}
               </div>
             </div>
           </div>

@@ -17,7 +17,21 @@ export const UserProvider = ({ children }) => {
   });
   const [loginStatus, setLoginStatus] = useState(false)
 
-  // check if token exist then decode the token and fetch user data
+  // Logout function
+  const logout = () => {
+    localStorage.removeItem('token')
+    setUser({
+      'id': '',
+      'username': '',
+      'email': '',
+      'address': '',
+      'phone': '',
+      'roles': ''
+    })
+    setLoginStatus(false)
+  }
+
+  // Function to check if token exist then decode the token and fetch user data
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (token) {
@@ -63,7 +77,7 @@ export const UserProvider = ({ children }) => {
   }, [])
 
   return (
-    <UserContext.Provider value={{ user, setUser, loginStatus, setLoginStatus }}>
+    <UserContext.Provider value={{ user, setUser, loginStatus, setLoginStatus, logout }}>
       {children} {/* Render children components here */}
     </UserContext.Provider>
   );
