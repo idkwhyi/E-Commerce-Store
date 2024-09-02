@@ -34,7 +34,7 @@ const Products = () => {
             className='w-3/5 flex items-center justify-center'
           >
             <div
-              className='p-5 rounded-lg'
+              className='p-5 rounded-lg bg-white'
             >
               <p className='roboto-slab-bold text-7xl text-center'
                 style={{
