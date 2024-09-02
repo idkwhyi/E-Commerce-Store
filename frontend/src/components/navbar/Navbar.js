@@ -11,19 +11,21 @@ import { useUser } from '../../context/UserContext';
 const Navbar = () => {
   // Array to track hover state for each list item
   const [hoveredIndex, setHoveredIndex] = useState(null);
-  const [loginStatus, setLoginStatus] = useState(false)
-  const { user } =  useUser()
+  // const [loginStatus, setLoginStatus] = useState(false)
+  const { user, loginStatus, setLoginStatus } =  useUser()
 
+  // navlist hover animation mouse enter
   const handleMouseEnter = (index) => {
     setHoveredIndex(index);
   };
-
+  
+  // navlist hover animation mouse leave
   const handleMouseLeave = () => {
     setHoveredIndex(null);
   };
 
   const handleLogoutClick = () => {
-    setLoginStatus(!loginStatus)
+    setLoginStatus(false)
     console.log("log out")
   }
 
