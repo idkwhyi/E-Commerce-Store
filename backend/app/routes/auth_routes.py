@@ -58,15 +58,15 @@ def login():
   except PraetorianError as e:
     return jsonify({'message': str(e)}), 401
 
-@auth.route('/refresh', methods=['POST'])
-def refresh():
-  print("Refresh request")
-  old_token = request.get_json()
-  new_token = guard.refresh_jwt_token(old_token)
+# ! Unused routes (might delete)
+# @auth.route('/refresh', methods=['POST'])
+# def refresh():
+#   print("Refresh request")
+#   old_token = request.get_json()
+#   new_token = guard.refresh_jwt_token(old_token)
   
-  return jsonify({'access_token': new_token}), 200
+#   return jsonify({'access_token': new_token}), 200
   
-
 # Reset password
 @auth.route('/reset_password', methods=['POST'])
 def reset_password():
@@ -75,12 +75,16 @@ def reset_password():
   email=data.get('email')
   new_password=data.get('password')
   
-  user = User.query.filter_by(username=username, email=email).first()
+  if not new_password:
+    return jsonify({'message': 'New password is required'}), 404
+  
+  user = User.query.get(username=username, email=email).first()
   
   if not user:
-    return jsonify({'message': 'Invalid username or email!'}), 404
+    return jsonify({'message': 'User not found'}), 404
   
-  user_password = generate_password_hash(new_password)
+  user.password = guard.hash_password(new_password)
   db.session.commit()
+  
   return jsonify({'message': 'Password reset successfully'}), 200
   
