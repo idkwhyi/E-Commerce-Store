@@ -71,16 +71,19 @@ def login():
 @auth.route('/reset_password', methods=['POST'])
 def reset_password():
   data = request.get_json()
+  print("User data - [reset password]: ", data)
   username=data.get('username')
   email=data.get('email')
-  new_password=data.get('password')
+  new_password=data.get('newPassword')
   
   if not new_password:
+    print("Cannot find new password - [reset password]")
     return jsonify({'message': 'New password is required'}), 404
   
-  user = User.query.get(username=username, email=email).first()
+  user = User.query.filter_by(username=username, email=email).first()
   
   if not user:
+    print("Cannot get user - [reset password]")
     return jsonify({'message': 'User not found'}), 404
   
   user.password = guard.hash_password(new_password)
