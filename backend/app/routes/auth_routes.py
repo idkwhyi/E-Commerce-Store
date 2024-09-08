@@ -5,7 +5,6 @@ from .. import (
   guard, 
   PraetorianError
 ) # import from __init__.py
-from werkzeug.security import generate_password_hash, check_password_hash # handle password hashing
 
 auth = Blueprint('auth', __name__)
 
