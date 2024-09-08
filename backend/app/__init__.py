@@ -37,8 +37,10 @@ def create_app():
     # Register Blueprints
     from .routes.auth_routes import auth
     from .routes.user_routes import user
+    from .routes.product_routes import product
 
     app.register_blueprint(auth, url_prefix='/auth')
     app.register_blueprint(user, url_prefix='/user')
+    app.register_blueprint(product, url_prefix='/product')
 
     return app
