@@ -21,6 +21,7 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/forgot_password' element={<ForgotPassword />} />
           <Route path='/products' element={<Products/>} />
+          <Route path='/products/:category' element={<Products/>} />
         </Routes>
       </Router>
     </UserProvider>

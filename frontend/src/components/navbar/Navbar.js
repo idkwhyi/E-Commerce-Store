@@ -37,7 +37,7 @@ const Navbar = () => {
       <ul className='flex items-center justify-center'>
         <NavList
           listName="Accessories"
-          linkTo="/accessories"
+          linkTo="/products"
           index={0}
           hoveredIndex={hoveredIndex}
           onMouseEnter={handleMouseEnter}
@@ -45,7 +45,7 @@ const Navbar = () => {
         />
         <NavList
           listName="Clothing"
-          linkTo="/clothing"
+          linkTo="/products"
           index={1}
           hoveredIndex={hoveredIndex}
           onMouseEnter={handleMouseEnter}
@@ -53,7 +53,7 @@ const Navbar = () => {
         />
         <NavList
           listName="Utensils"
-          linkTo="/utensils"
+          linkTo="/products"
           index={2}
           hoveredIndex={hoveredIndex}
           onMouseEnter={handleMouseEnter}

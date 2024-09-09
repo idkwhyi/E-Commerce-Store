@@ -13,6 +13,7 @@ const NavLogo = () => {
     <Link
       className='max-w-32 h-full p-3 poppins-bold text-2xl flex items-center justify-center' 
       onClick={handleLogoClicked}
+      to={'/'}
     >
       {/* <img src={logoImage} alt="Native"/> */}
       Native
