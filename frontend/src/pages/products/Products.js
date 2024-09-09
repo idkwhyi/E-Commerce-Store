@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Navbar from '../../components/navbar/Navbar'
+import Filter from '../../components/products/Filter'
 
 const Products = () => {
+
+  const { category } = useParams()
+  const navigate = useNavigate()
+  const [selectedOption, setSelectedOption] = useState('All Products');
+  const [dropdownClosed, setDropdownClosed] = useState('false')
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -17,14 +23,16 @@ const Products = () => {
     loadProducts()
   }, [])
 
-  const [selectedOption, setSelectedOption] = useState('');
-  const [dropdownClosed, setDropdownClosed] = useState('false')
-  const dropdownOptions = ['All Products', 'Accessories', 'Clothing', 'Utensils']
 
-  const handleSelectOption = (option) => {
-    setSelectedOption(option)
+
+  const handleSelectOption = (urlValue, textValue) => {
+    setSelectedOption(textValue)
+    console.log(urlValue, textValue)
     setDropdownClosed(true)
+    navigate(`/products/${urlValue}`)
   }
+
+
 
 
   return (
@@ -32,7 +40,7 @@ const Products = () => {
       <header className='sticky top-0 h-auto w-full'>
         <Navbar />
       </header>
-      <main className='w-full h-auto bg-red-300'>
+      <main className='w-full h-auto '>
         {/* hero section */}
         <section
           style={{
@@ -49,8 +57,9 @@ const Products = () => {
             <button
               type="button"
               onClick={() => setDropdownClosed(!dropdownClosed)}
-              className="inline-flex justify-between w-full h-auto px-4 py-4 text-md border-y border-y-white max-h-[65px]"
+              className="inline-flex justify-between w-full h-auto px-4 py-4 text-md max-h-[65px]"
               style={{
+                borderTop: dropdownClosed ? 'solid white' : '1px solid #212121',
                 borderBottom: dropdownClosed ? 'solid white' : '1px solid #212121',
                 color: dropdownClosed ? '#fff' : '#212121',
                 backgroundColor: dropdownClosed ? 'transparent' : '#fff',
@@ -74,7 +83,6 @@ const Products = () => {
             </button>
 
             {/* Dropdown options */}
-
             <ul
               style={{
                 display: dropdownClosed ? 'none' : 'block',
@@ -82,19 +90,19 @@ const Products = () => {
               }}
               className="w-auto bg-white"
             >
-              {dropdownOptions.map((option, index) => (
-                <li
-                  key={index}
-                  className="w-full h-auto px-4 py-3 text-md min-w-[400px] max-h-[65px] text-softBlack cursor-pointer hover:bg-gray-100 text-sm rounded-md"
-                  onClick={() => handleSelectOption(option)}
-                >
-                  {option}
-                </li>
-              ))}
+              <Filter handleSelectOption={handleSelectOption} urlValue={'all'} textValue={'All Products'} />
+              <Filter handleSelectOption={handleSelectOption} urlValue={'accessories'} textValue={'Accessories'} />
+              <Filter handleSelectOption={handleSelectOption} urlValue={'clothing'} textValue={'Clothing'} />
+              <Filter handleSelectOption={handleSelectOption} urlValue={'utensils'} textValue={'Utensils'} />
             </ul>
           </div>
         </section>
-
+        <section className='p-20'>
+          {/* {category ? category : 'All Products'} */}
+          <h1 className='text-9xl roboto-slab-bold'>
+            {selectedOption}
+          </h1>
+        </section>
       </main>
     </div>
   )
