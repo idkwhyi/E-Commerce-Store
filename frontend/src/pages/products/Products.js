@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Navbar from '../../components/navbar/Navbar'
 import Filter from '../../components/products/Filter'
+import Card from '../../components/products/Card'
 
 const Products = () => {
 
@@ -101,11 +102,19 @@ const Products = () => {
             </ul>
           </div>
         </section>
-        <section className='p-20'>
+        <section className='p-12 w-full'>
           {/* {category ? category : 'All Products'} */}
-          <h1 className='text-9xl roboto-slab-bold'>
+          <h1 className='text-9xl roboto-slab-bold mb-14'>
             {selectedOption}
           </h1>
+          <section className='bg-slate-200 w-full max-w-[100vw] h-auto flex items-center justify-center'>
+            <div className='grid grid-cols-3 gap-5'>
+              <Card />
+              <Card />
+              <Card />
+              <Card />
+            </div>
+          </section>
         </section>
       </main>
     </div>
