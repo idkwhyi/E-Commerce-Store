@@ -22,15 +22,20 @@ const Products = () => {
 
   useEffect(() => {
     const loadProducts = async () => {
-      try {
-        const response = await axios.get('http://127.0.0.1:5000/product/all')
-        console.log(response.data)
-      } catch (e) {
-        console.error("Error fetching products: ", e)
+      if (category === 'all'){
+        // Perform fetch all products
+        try {
+          const response = await axios.get('http://127.0.0.1:5000/product/all')
+          console.log(response.data)
+        } catch (e) {
+          console.error("Error fetching products: ", e)
+        }
+      } else {
+        // Perform fetch products by category
       }
     }
     loadProducts()
-  }, [])
+  }, [category])
 
   const handleSelectOption = (urlValue, textValue) => {
     setSelectedOption(textValue)
