@@ -12,6 +12,14 @@ const Products = () => {
   const [dropdownClosed, setDropdownClosed] = useState('false')
 
   useEffect(() => {
+    if (category) {
+      category === 'all' ? setSelectedOption('All Products') : setSelectedOption(category.charAt(0).toUpperCase() + category.slice(1));
+    } else {
+      setSelectedOption('All Products');
+    }
+  }, [category])
+
+  useEffect(() => {
     const loadProducts = async () => {
       try {
         const response = await axios.get('http://127.0.0.1:5000/product/all')
@@ -23,16 +31,12 @@ const Products = () => {
     loadProducts()
   }, [])
 
-
-
   const handleSelectOption = (urlValue, textValue) => {
     setSelectedOption(textValue)
-    console.log(urlValue, textValue)
     setDropdownClosed(true)
     navigate(`/products/${urlValue}`)
+    console.info("category", category)
   }
-
-
 
 
   return (
