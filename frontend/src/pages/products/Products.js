@@ -53,14 +53,14 @@ const Products = () => {
           className='w-full bg-gray-600 flex items-end justify-end'
         >
           {/* Dropdown */}
-          <div style={{ marginRight: '10vw' }} className="z-10 min-w-[400px] max-w-[400px] min-h-[235px] flex flex-col poppins-medium text-softWhite mb-10">
+          <div style={{ marginRight: '10vw' }} className="z-10 min-w-[400px] max-w-[400px] min-h-[240px] max-h-[240px] flex flex-col poppins-medium text-softWhite mb-10">
             <button
               type="button"
               onClick={() => setDropdownClosed(!dropdownClosed)}
               className="inline-flex justify-between w-full h-auto px-4 py-4 text-md max-h-[65px]"
               style={{
-                borderTop: dropdownClosed ? 'solid white' : '1px solid #212121',
-                borderBottom: dropdownClosed ? 'solid white' : '1px solid #212121',
+                borderTop: dropdownClosed ? 'solid white' : '',
+                borderBottom: dropdownClosed ? 'solid white' : '',
                 color: dropdownClosed ? '#fff' : '#212121',
                 backgroundColor: dropdownClosed ? 'transparent' : '#fff',
                 borderRadius: dropdownClosed ? '0' : '0.375rem 0.375rem 0 0'
@@ -88,7 +88,7 @@ const Products = () => {
                 display: dropdownClosed ? 'none' : 'block',
                 borderRadius: '0 0 0.375rem 0.375rem'
               }}
-              className="w-auto bg-white"
+              className="w-auto bg-white border-t border-t-softBlack"
             >
               <Filter handleSelectOption={handleSelectOption} urlValue={'all'} textValue={'All Products'} />
               <Filter handleSelectOption={handleSelectOption} urlValue={'accessories'} textValue={'Accessories'} />
