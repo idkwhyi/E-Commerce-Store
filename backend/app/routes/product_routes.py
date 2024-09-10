@@ -46,7 +46,7 @@ def get_all_products():
   
 
 #! Routes: Get products by category
-@product.route('/category', method=['POST'])
+@product.route('/category', methods=['POST'])
 def get_products_by_category():
   data = request.get_json()
   
@@ -56,7 +56,7 @@ def get_products_by_category():
   
   try:
     # Retrieve the category by name
-    category_obj = Category.query.filter_by(category_name=category).first()
+    category_obj = Category.query.filter_by(categoryName=category).first()
     if not category_obj:
       return jsonify({'message': "Category not found"}), 404
     

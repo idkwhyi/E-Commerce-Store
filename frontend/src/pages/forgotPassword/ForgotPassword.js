@@ -34,8 +34,7 @@ const ForgotPassword = () => {
         setMessage(response.data.message)
         navigate('/login')
       } catch (e) {
-          console.error(e.message
-        )
+          console.error(e.message)
       }
     } else {
       console.log('Password is not match')

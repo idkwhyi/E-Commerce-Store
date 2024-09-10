@@ -10,7 +10,9 @@ const Products = () => {
   const { category } = useParams()
   const navigate = useNavigate()
   const [selectedOption, setSelectedOption] = useState('All Products');
-  const [dropdownClosed, setDropdownClosed] = useState('false')
+  const [dropdownClosed, setDropdownClosed] = useState(true)
+  const [message, setMessage] = useState('')
+  const [productsList, setProductsList] = useState([])
 
   useEffect(() => {
     if (category) {
@@ -22,16 +24,29 @@ const Products = () => {
 
   useEffect(() => {
     const loadProducts = async () => {
-      if (category === 'all'){
+      if (category === 'all') {
         // Perform fetch all products
         try {
           const response = await axios.get('http://127.0.0.1:5000/product/all')
-          console.log(response.data)
+          console.log("Response - allproducts: ", response.data)
+          setProductsList(response.data.products)
+          setMessage(response.data.message)
         } catch (e) {
           console.error("Error fetching products: ", e)
         }
       } else {
         // Perform fetch products by category
+        try {
+          const response = await axios.post('http://127.0.0.1:5000/product/category', {
+            'category': category
+          })
+          console.log(response.data.message)
+          console.log("Response - bycategory: ", response.data)
+          setProductsList(response.data.products)
+          setMessage(response.data.message)
+        } catch (e) {
+          console.error(e.message)
+        }
       }
     }
     loadProducts()
@@ -112,12 +127,12 @@ const Products = () => {
           <h1 className='text-9xl roboto-slab-bold mb-14'>
             {selectedOption}
           </h1>
-          <section className='bg-slate-200 w-full max-w-[100vw] h-auto flex items-center justify-center'>
+          <section className='w-full max-w-[100vw] h-auto flex items-center justify-center'>
             <div className='grid grid-cols-3 gap-5'>
-              <Card />
-              <Card />
-              <Card />
-              <Card />
+              {/* Map the products */}
+              {productsList.map((product) => (
+                <Card product={product} key={product.product_id} />
+              ))}
             </div>
           </section>
         </section>
