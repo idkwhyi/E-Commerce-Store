@@ -6,12 +6,11 @@ import Filter from '../../components/products/Filter'
 import Card from '../../components/products/Card'
 
 const Products = () => {
-
   const { category } = useParams()
   const navigate = useNavigate()
   const [selectedOption, setSelectedOption] = useState('All Products');
   const [dropdownClosed, setDropdownClosed] = useState(true)
-  const [message, setMessage] = useState('')
+  // const [message, setMessage] = useState('')
   const [productsList, setProductsList] = useState([])
 
   useEffect(() => {
@@ -30,7 +29,7 @@ const Products = () => {
           const response = await axios.get('http://127.0.0.1:5000/product/all')
           console.log("Response - allproducts: ", response.data)
           setProductsList(response.data.products)
-          setMessage(response.data.message)
+          // setMessage(response.data.message)
         } catch (e) {
           console.error("Error fetching products: ", e)
         }
@@ -43,7 +42,7 @@ const Products = () => {
           console.log(response.data.message)
           console.log("Response - bycategory: ", response.data)
           setProductsList(response.data.products)
-          setMessage(response.data.message)
+          // setMessage(response.data.message)
         } catch (e) {
           console.error(e.message)
         }
@@ -65,7 +64,7 @@ const Products = () => {
       <header className='sticky top-0 h-auto w-full'>
         <Navbar />
       </header>
-      <main className='w-full h-auto '>
+      <main className='w-full h-auto'>
         {/* hero section */}
         <section
           style={{

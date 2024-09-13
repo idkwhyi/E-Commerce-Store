@@ -36,7 +36,7 @@ const Products = () => {
             <div
               className='p-5 rounded-lg bg-white'
             >
-              <p className='roboto-slab-bold text-7xl text-center'
+              <p className='roboto-slab-bold text-5xl text-center'
                 style={{
                   backgroundImage: "url('https://images.unsplash.com/photo-1557687790-902ede7ab58c?q=80&w=2800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
                   backgroundRepeat: "no-repeat",

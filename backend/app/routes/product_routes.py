@@ -5,6 +5,7 @@ from sqlalchemy.exc import SQLAlchemyError
 
 product = Blueprint('product', __name__)
 
+#! Get all products 
 @product.route('/all', methods=['GET'])
 def get_all_products():
   try:
@@ -92,4 +93,43 @@ def get_products_by_category():
     print(f"Unexpected error: {e}")
     return jsonify({'message': "An unexpected error occurred"}), 500
   
+#! Get product by id
+@product.route('/id', methods=['POST'])
+def get_product_detail_by_id():
+  data = request.get_json()
   
+  product_id = data.get('product_id')
+  print("Product id: ", product_id)
+  
+  if not product_id:
+    return jsonify({'message': 'Product id is required'})
+  
+  try:
+    product = Product.query.filter_by(productId=product_id).first()
+    
+    product_details = {
+      'product_id': product.productId,
+      'product_name': product.productName,
+      'category_id': product.categoryId,
+      'product_price': product.price,
+      'product_quantity': product.stockQuantity,
+      'product_description': product.description,
+      'product_image': product.image
+    }
+  
+    return jsonify({
+      'message': f"Successfully get {product.productName} details",
+      'product_details': product_details
+      # TODO: TEST THIS ROUTES
+    }), 200
+  
+  except SQLAlchemyError as e:
+    # Log the exception for debugging purposes
+    print(f"Error retrieving products: {e}")
+    return jsonify({'message': 'An error occurred while retrieving the products'}), 500
+  
+  except Exception as e:
+    # Catch any other unexpected exceptions
+    print(f"Unexpected error: {e}")
+    return jsonify({'message': "An unexpected error occurred"}), 500
+    
