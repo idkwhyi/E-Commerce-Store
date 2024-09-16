@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../navbar/Navbar'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-
+import { useUser } from '../../context/UserContext'
 
 const ProductDetails = () => {
 
   const { productId } = useParams()
+  const { loginStatus } =  useUser()
+  const token = localStorage.getItem('token')
+  const navigate = useNavigate()
   const [productDetails, setProductDetails] = useState(null)
   const [productAmount, setProductAmount] = useState(0)
+
 
   useEffect(() => {
     const get_products_details = async () => {
@@ -38,7 +42,6 @@ const ProductDetails = () => {
   // Function to handle manual input change
   const handleInputChange = (event) => {
     const value = event.target.value;
-
     // Allow only numbers
     if (/^\d*$/.test(value)) {
       // If value is empty, default to 1
@@ -50,6 +53,35 @@ const ProductDetails = () => {
       }
     }
   };
+
+  // Retrieve cart from localstorage from JSON string as an object and create new empty array if cart is not exist
+  const handleAddToCart = () => {
+    //* Check if user is logged in
+    if (!token && !loginStatus){
+      alert("Login is required before do this action!")
+      navigate('/login')
+    }
+
+    // Get the cart from localstorage 
+    const cart = JSON.parse(localStorage.getItem('cart')) || []
+
+    // Check if the product is already in the cart
+    const existingProductIndex = cart.findIndex(item => item.product_id === productDetails.product_id);
+    
+    if (existingProductIndex >= 0) {
+      // If the product is already in the cart, update its quantity
+      cart[existingProductIndex].quantity += productAmount;
+    } else {
+      cart.push({
+        product_id: productDetails.product_id,
+        product_name: productDetails.product_name,
+        product_price: productDetails.product_price,
+        product_image: productDetails.product_image,
+        quantity: productAmount
+      })
+    }
+
+  }
 
   if (!productDetails) {
     // Render a loading message or spinner while fetching the product details
@@ -116,7 +148,10 @@ const ProductDetails = () => {
               </div>
             </div>
 
-            <button className='w-full h-16 bg-black text-softWhite roboto-slab-bold text-2xl'>Add to Cart</button>
+            <button 
+              className='w-full h-16 bg-black text-softWhite roboto-slab-bold text-2xl'
+              onClick={handleAddToCart}
+            >Add to Cart</button>
           </div>
         </div>
       </main>
