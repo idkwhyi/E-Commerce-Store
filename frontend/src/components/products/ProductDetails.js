@@ -83,7 +83,7 @@ const ProductDetails = () => {
 
     localStorage.setItem('cart', JSON.stringify(cart))
     alert(`${productDetails.product_name} has been added to the cart`)
-
+    window.location.reload(true);
   }
 
   if (!productDetails) {

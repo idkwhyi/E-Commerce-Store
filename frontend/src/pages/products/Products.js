@@ -77,7 +77,7 @@ const Products = () => {
           className='w-full bg-gray-600 flex items-end justify-end'
         >
           {/* Dropdown */}
-          <div style={{ marginRight: '10vw' }} className="z-10 min-w-[400px] max-w-[400px] min-h-[240px] max-h-[240px] flex flex-col poppins-medium text-softWhite mb-10">
+          <div style={{ marginRight: '10vw' }} className="z-5 min-w-[400px] max-w-[400px] min-h-[240px] max-h-[240px] flex flex-col poppins-medium text-softWhite mb-10">
             <button
               type="button"
               onClick={() => setDropdownClosed(!dropdownClosed)}
@@ -92,8 +92,8 @@ const Products = () => {
             >
               {selectedOption ? selectedOption : 'All Products'}
               {/* Down arrow */}
-              <svg
-                className={`w-5 h-5 ml-2 transition-transform ${dropdownClosed ? 'rotate-180' : ''}`}
+              {/* <svg
+                className={`w-5 h-5 ml-2 z-0 transition-transform ${dropdownClosed ? 'rotate-180' : ''}`}
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
@@ -103,7 +103,7 @@ const Products = () => {
                   d="M5.293 7.707a1 1 0 011.414 0L10 10.586l3.293-2.879a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                   clipRule="evenodd"
                 />
-              </svg>
+              </svg> */}
             </button>
 
             {/* Dropdown options */}

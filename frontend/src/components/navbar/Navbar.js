@@ -4,8 +4,8 @@ import '../../Font.css';
 import NavLogo from './NavLogo';
 import NavList from './NavList';
 import { useUser } from '../../context/UserContext';
-// import profileImg from '../../assets/image/profile.png';
 import CartItem from '../cart/CartItem';
+// import profileImg from '../../assets/image/profile.png';
 
 
 
@@ -23,11 +23,6 @@ const Navbar = () => {
     return cart.reduce((total, item) => total + item.quantity, 0);
   });
 
-  useEffect(() => {
-    const newTotalAmount = cart.reduce((total, item) => total + item.quantity, 0);
-    setTotalAmount(newTotalAmount);
-  }, [cart]);
-
   // Listen for changes in localStorage and update the state accordingly
   useEffect(() => {
     const handleStorageChange = (e) => {
@@ -44,6 +39,12 @@ const Navbar = () => {
       window.removeEventListener('storage', handleStorageChange);
     };
   }, []);
+
+  // set total amount of the quantity
+  useEffect(() => {
+    const newTotalAmount = cart.reduce((total, item) => total + item.quantity, 0);
+    setTotalAmount(newTotalAmount);
+  }, [cart]);
 
   // navlist hover animation mouse enter
   const handleMouseEnter = (index) => {
@@ -116,8 +117,8 @@ const Navbar = () => {
           </div>
           <div
             tabIndex={0}
-            className="card card-compact dropdown-content bg-base-100 z-[1] mt-3 w-52 shadow">
-            <div className="card-body">
+            className="card card-compact dropdown-content bg-base-100 z-[1] mt-3 w-64 shadow">
+            <div className="card-body w-full gap-3">
               <span className="text-lg poppins-medium">{totalAmount} Items</span>
               {cart.map((item) => (
                 <CartItem item={item} />
@@ -150,7 +151,7 @@ const Navbar = () => {
                 <span className="badge">New</span>
               </Link>
             </li> */}
-            {/* <li><Link>Settings</Link></li> */}
+            <li><Link>Settings</Link></li>
 
             {
               loginStatus ? (
