@@ -7,7 +7,7 @@ import RegularButton from '../../components/buttons/RegularButton'
 
 const Hero = () => {
   return (
-    <section style={{ height: '180vh' }} className='roboto-slab-regular bg-hero-image bg-cover bg-center text-softWhite flex flex-col gap-32'>
+    <section style={{ height: 'max-content' }} className='roboto-slab-regular bg-hero-image bg-cover bg-center text-softWhite flex flex-col gap-32'>
       <div className='w-100 flex justify-between '>
         <h1 style={{ fontSize: '15rem', lineHeight: '1' }} className='roboto-slab-bold w-2/3 h-fit pl-12'>Choose Green, Live Clean.</h1>
         <div className='w-auto h-auto flex flex-col justify-end items-start gap-10 bg-transparent'>
@@ -16,14 +16,14 @@ const Hero = () => {
         </div>
       </div>
       <div className='w-full h-full bg-transparent px-12 pb-12 flex text-white'>
-        <div className='roboto-slab-semibold w-2/5 h-full border border-softWhite rounded-xl flex flex-col items-center justify-center p-12 text-2xl text-center'>
+        <div className='roboto-slab-semibold w-2/5 border border-softWhite rounded-xl flex flex-col items-center justify-center p-12 text-2xl text-center'>
           <p>A JAKARTA</p>
           <p>SPECIALITY</p>
           <p>ECO-FRIENDLY</p>
           <p className='mb-5'>PRODUCTS</p>
           <HoldingPlantSvg />
         </div>
-        <div className='flex flex-col w-full'>
+        <div className='flex flex-col w-full '>
           <ul className='flex h-full'>
             <NewProduct />
             <NewProduct />
@@ -35,7 +35,7 @@ const Hero = () => {
             <ArrowTop/>
             <ArrowTop/>
             <ArrowTop/>
-            <span className='mx-4'>NEW ** CHECK OUT OUR NEW PRODUCTS ** NEW</span>
+            <span className='mx-4 text-lg text-center'>CHECK OUT OUR NEW PRODUCTS</span>
             <ArrowTop/>
             <ArrowTop/>
             <ArrowTop/>

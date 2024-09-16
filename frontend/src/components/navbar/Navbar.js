@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../../Font.css';
 import NavLogo from './NavLogo';
 import NavList from './NavList';
 import { useUser } from '../../context/UserContext';
 // import profileImg from '../../assets/image/profile.png';
+import CartItem from '../cart/CartItem';
 
 
 
@@ -12,8 +13,37 @@ const Navbar = () => {
   // Array to track hover state for each list item
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const { user, loginStatus, logout } = useUser() // UserContext
-
   const navigate = useNavigate()
+  const [cart, setCart] = useState(() => {
+    const storedCart = localStorage.getItem('cart');
+    return storedCart ? JSON.parse(storedCart) : [];
+  });
+  const [totalAmount, setTotalAmount] = useState(() => {
+    // Initialize totalAmount based on cart items
+    return cart.reduce((total, item) => total + item.quantity, 0);
+  });
+
+  useEffect(() => {
+    const newTotalAmount = cart.reduce((total, item) => total + item.quantity, 0);
+    setTotalAmount(newTotalAmount);
+  }, [cart]);
+
+  // Listen for changes in localStorage and update the state accordingly
+  useEffect(() => {
+    const handleStorageChange = (e) => {
+      if (e.key === 'cart') {
+        setCart(JSON.parse(e.newValue) || []); // Update state with new cart
+      }
+    };
+
+    // Add an event listener to detect changes to localStorage from other tabs/windows
+    window.addEventListener('storage', handleStorageChange);
+
+    // Cleanup: Remove the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
 
   // navlist hover animation mouse enter
   const handleMouseEnter = (index) => {
@@ -81,15 +111,17 @@ const Navbar = () => {
                   strokeWidth="2"
                   d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
-              <span className="badge badge-sm indicator-item">8</span>
+              <span className="badge badge-sm indicator-item">{totalAmount}</span>
             </div>
           </div>
           <div
             tabIndex={0}
             className="card card-compact dropdown-content bg-base-100 z-[1] mt-3 w-52 shadow">
             <div className="card-body">
-              <span className="text-lg poppins-medium">8 Items</span>
-              <span className="text-fernGreen">Subtotal: $999</span>
+              <span className="text-lg poppins-medium">{totalAmount} Items</span>
+              {cart.map((item) => (
+                <CartItem item={item} />
+              ))}
               <div className="card-actions">
                 <button className="btn btn-neutral btn-block">View cart</button>
               </div>
