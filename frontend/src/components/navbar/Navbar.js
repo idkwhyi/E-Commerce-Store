@@ -121,10 +121,10 @@ const Navbar = () => {
             <div className="card-body w-full gap-3">
               <span className="text-lg poppins-medium">{totalAmount} Items</span>
               {cart.map((item) => (
-                <CartItem item={item} />
+                <CartItem item={item} key={item.product_name}/>
               ))}
               <div className="card-actions">
-                <button className="btn btn-neutral btn-block">View cart</button>
+                <button className="btn btn-neutral btn-block" onClick={() => navigate('/cart')}>View cart</button>
               </div>
             </div>
           </div>

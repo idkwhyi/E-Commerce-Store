@@ -1,3 +1,4 @@
+// THIS COMPONENT IS BEEN USED IN NAVBAR
 import React from 'react'
 
 const CartItem = ({item}) => {

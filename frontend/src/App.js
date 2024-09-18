@@ -8,7 +8,8 @@ import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import ForgotPassword from './pages/forgotPassword/ForgotPassword';
 import Products from './pages/products/Products';
-import ProductDetails from './components/products/ProductDetails';
+import ProductDetails from './pages/products/ProductDetails';
+import ViewCart from './pages/products/ViewCart';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
           <Route path='/products' element={<Products/>} />
           <Route path='/products/:category' element={<Products/>} />
           <Route path='/products/details/:productId' element={<ProductDetails/>} />
+          <Route path='/cart' element={<ViewCart/>} />
         </Routes>
       </Router>
     </UserProvider>

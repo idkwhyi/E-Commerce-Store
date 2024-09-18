@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../navbar/Navbar'
+import Navbar from '../../components/navbar/Navbar'
+import Footer from '../../components/footer/Footer'
 import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useUser } from '../../context/UserContext'
@@ -7,13 +8,13 @@ import { useUser } from '../../context/UserContext'
 const ProductDetails = () => {
 
   const { productId } = useParams()
-  const { loginStatus } =  useUser()
+  const { loginStatus } = useUser()
   const token = localStorage.getItem('token')
   const navigate = useNavigate()
-  const [productDetails, setProductDetails] = useState(null)
-  const [productAmount, setProductAmount] = useState(0)
+  const [productDetails, setProductDetails] = useState(null) // state to store product details from database
+  const [productAmount, setProductAmount] = useState(0) // product amount from the input tag
 
-
+  // useEffect to get product details by product_id from database
   useEffect(() => {
     const get_products_details = async () => {
       try {
@@ -22,7 +23,8 @@ const ProductDetails = () => {
         })
         console.log(response.data.product_details)
         setProductDetails(response.data.product_details)
-
+        console.log("response data: ", response.data.productd)
+        
       } catch (e) {
         console.log("failed fetch product by id")
         console.error(e.message)
@@ -30,6 +32,7 @@ const ProductDetails = () => {
     }
     get_products_details()
   }, [productId])
+  
 
   const increment = () => {
     setProductAmount(prevAmount => prevAmount + 1)
@@ -57,7 +60,7 @@ const ProductDetails = () => {
   // Retrieve cart from localstorage from JSON string as an object and create new empty array if cart is not exist
   const handleAddToCart = () => {
     //* Check if user is logged in
-    if (!token && !loginStatus){
+    if (!token && !loginStatus) {
       alert("Login is required before do this action!")
       navigate('/login')
     }
@@ -67,7 +70,7 @@ const ProductDetails = () => {
 
     // Check if the product is already in the cart
     const existingProductIndex = cart.findIndex(item => item.product_id === productDetails.product_id);
-    
+
     if (existingProductIndex >= 0) {
       // If the product is already in the cart, update its quantity
       cart[existingProductIndex].quantity += productAmount;
@@ -151,13 +154,14 @@ const ProductDetails = () => {
               </div>
             </div>
 
-            <button 
+            <button
               className='w-full h-16 bg-black text-softWhite roboto-slab-bold text-2xl'
               onClick={handleAddToCart}
             >Add to Cart</button>
           </div>
         </div>
       </main>
+      <Footer/>k
     </div>
   )
 }
