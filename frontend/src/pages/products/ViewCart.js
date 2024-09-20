@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../../components/navbar/Navbar'
 import Footer from '../../components/footer/Footer'
 import ProductInCart from '../../components/cart/ProductInCart'
@@ -13,7 +13,7 @@ const ViewCart = () => {
       const cartLocalStorage = JSON.parse(localStorage.getItem('cart'))
       console.log(cartLocalStorage)
 
-      if (cartLocalStorage){
+      if (cartLocalStorage) {
         setProductsInCart(cartLocalStorage)
       }
     }
@@ -52,7 +52,7 @@ const ViewCart = () => {
 
         <div className='p-5'>
           {productsInCart.map(item => (
-            <ProductInCart item={item} key={item.product_name}/>
+            <ProductInCart item={item} key={item.product_name} />
           ))}
         </div>
 
@@ -60,12 +60,16 @@ const ViewCart = () => {
           <hr />
         </div>
 
-        {/* TODO: CREATE CHECK  OUT BUTTON BELOW*/}
-        <button>CHECK OUT</button>
+        <div className='w-full h-auto flex items-center justify-end p-5'>
+          <button className='poppins-regular w-5/12 h-20 text-2xl bg-black text-white hover:bg-white hover:text-black hover:border-2 hover:border-black'
+          >Check Out</button>
+        </div>
 
       </main>
       <Footer />
     </div>
+    // TODO: CART PRICE UPDATE WHEN ITEM AMOUNT CHANGE 
+    // TODO: ADD THE SUB TOTAL
   )
 }
 

@@ -18,16 +18,14 @@ const Footer = () => {
           </ul>
           <ul className='w-auto flex flex-col '>
             <FooterListHeader headerText="OUR PRODUCTS" />
-            <FooterList text={"Product 1"} link={'#'} />
-            <FooterList text={"Product 2"} link={'#'} />
-            <FooterList text={"Product 3"} link={'#'} />
-            <FooterList text={"Product 4"} link={'#'} />
+            <FooterList text={"Accessories"} link={'/products/accessories'} />
+            <FooterList text={"Clothing"} link={'/products/clothing'} />
+            <FooterList text={"Utensils"} link={'/products/utensils'} />
           </ul>
           <ul>
             <FooterListHeader headerText={"PAGES"} />
-            <FooterList text={"Page 1"} link={'#'} />
-            <FooterList text={"Page 2"} link={'#'} />
-            <FooterList text={"Page 3"} link={'#'} />
+            <FooterList text={"Home"} link={'/'} />
+            <FooterList text={"Products"} link={'/products/all'} />
           </ul>
         </div>
       </div>
