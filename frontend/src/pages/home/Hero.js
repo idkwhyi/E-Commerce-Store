@@ -12,7 +12,7 @@ const Hero = () => {
         <h1 style={{ fontSize: '15rem', lineHeight: '1' }} className='roboto-slab-bold w-2/3 h-fit pl-12'>Choose Green, Live Clean.</h1>
         <div className='w-auto h-auto flex flex-col justify-end items-start gap-10 bg-transparent'>
           <h3 className='roboto-slab-bold text-xl w-3/4 h-fit'>EMBRACE EVERY MOMENT WITH OUR THOUGHTFULLY CRAFTED ECO-FRIENDLY PRODUCTS, DESIGNED TO ENCHANCE YOUR LIFESTYLE AND CARE FOR THE PLANET.</h3>
-          <RegularButton buttonText={'SHOP NOW'} navigateTo={'#'}/>
+          <RegularButton buttonText={'SHOP NOW'} navigateTo={'/products/all'}/>
         </div>
       </div>
       <div className='w-full h-full bg-transparent px-12 pb-12 flex text-white'>

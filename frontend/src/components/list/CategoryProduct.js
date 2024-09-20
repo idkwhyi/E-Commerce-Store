@@ -1,13 +1,16 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
-const CategoryProduct = ({ categoryName, description, productCount }) => {
+const CategoryProduct = ({ categoryName, description, productCount, url }) => {
+  const navigate = useNavigate()
 
   const handleClick = () => {
-    console.info('clicked')
+    navigate(url)
   }
 
   return (
-    <li className='roboto-slab-regular w-full h-full rounded-xl border border-softBlack hover:bg-softBlack hover:text-softWhite transition-colors duration-300 ease-in-out'>
+    <li 
+      className='roboto-slab-regular w-full h-full rounded-xl border border-softBlack hover:bg-softBlack hover:text-softWhite transition-colors duration-300 ease-in-out'>
       <button
         className='w-full h-full p-7 rounded-xl flex flex-col justify-between'
         onClick={handleClick}

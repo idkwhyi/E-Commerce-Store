@@ -63,16 +63,20 @@ const Products = () => {
             <CategoryProduct
               categoryName={'ACCESSORIES'}
               description={"Elevate your style with accessories that do more than just look good. Each piece is thoughtfully crafted from sustainable materials, blending fashion with a commitment to the planet. Wear your values with pride, knowing that every detail reflects a dedication."}
-              productCount={'10'}
+              productCount={'7'}
+              url={'/products/accessories'}
             />
             <CategoryProduct
               categoryName={'CLOTHING'}
               description={"Step into a wardrobe where style and sustainability coexist. Our eco-friendly clothing is designed with the Earth in mind, using organic fabrics and ethical practices to create timeless pieces. Each garment tells a story of care—for the environment."}
-              productCount={'30'}
+              productCount={'4'}
+              url={'/products/clothing'}
             />
             <CategoryProduct
               categoryName={'UTENSILS'}
               description={"Redefine your kitchen essentials with utensils that are as kind to the Earth as they are to your home. Crafted from sustainable materials, our eco-friendly utensils are designed to last, reducing waste and making every meal more mindful."}
+              productCount={'6'}
+              url={'/products/utensils'}
             />
           </ul>
         </div>

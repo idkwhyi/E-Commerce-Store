@@ -60,6 +60,9 @@ const ViewCart = () => {
           <hr />
         </div>
 
+        {/* TODO: CREATE CHECK  OUT BUTTON BELOW*/}
+        <button>CHECK OUT</button>
+
       </main>
       <Footer />
     </div>
