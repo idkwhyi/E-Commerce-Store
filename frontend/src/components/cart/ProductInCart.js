@@ -1,8 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import trashIcon from '../../assets/image/trash.png';
+import axios from 'axios';
 
 const ProductInCart = ({ item }) => {
   const [productAmount, setProductAmount] = useState(item.quantity);
+  const [productDetails, setProductDetails] = useState(null) // state to store product details from database
+
+
+  // useEffect to get product details by product_id from database
+  useEffect(() => {
+    const get_products_details = async () => {
+      try {
+        const response = await axios.post('http://127.0.0.1:5000/product/id', {
+          'product_id': item.product_id
+        })
+        console.log(response.data.product_details)
+        setProductDetails(response.data.product_details)
+        console.log("response data: ", response.data.productd)
+        
+      } catch (e) {
+        console.log("failed fetch product by id")
+        console.error(e.message)
+      }
+    }
+    get_products_details()
+  })
 
   const increment = () => {
     setProductAmount(prevAmount => prevAmount + 1);
@@ -12,6 +34,7 @@ const ProductInCart = ({ item }) => {
     setProductAmount(prevQuantity => (prevQuantity > 0 ? prevQuantity - 1 : 0));
   };
 
+  // Function to handle manual input change
   const handleInputChange = (event) => {
     const value = event.target.value;
     // Allow only numbers
@@ -20,8 +43,14 @@ const ProductInCart = ({ item }) => {
       if (value === '') {
         setProductAmount(0);
       } else {
+        console.log(item.quantity)
         const numericValue = parseInt(value, 10);
-        setProductAmount(numericValue);
+        // check if value > product quantity
+        if (numericValue > productDetails.product_quantity) {
+          setProductAmount(productDetails.product_quantity)
+        } else {
+          setProductAmount(numericValue)
+        }
       }
     }
   };

@@ -53,7 +53,12 @@ const ProductDetails = () => {
         setProductAmount(0);
       } else {
         const numericValue = parseInt(value, 10);
-        setProductAmount(numericValue);
+        // check if value > product quantity
+        if (numericValue > productDetails.product_quantity){
+          setProductAmount(productDetails.product_quantity)
+        } else {
+          setProductAmount(numericValue)
+        }
       }
     }
   };
