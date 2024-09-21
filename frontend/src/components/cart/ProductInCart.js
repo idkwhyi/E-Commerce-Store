@@ -1,17 +1,15 @@
-import React, { useState } from 'react'
-import trashIcon from '../../assets/image/trash.png'
-import { useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import trashIcon from '../../assets/image/trash.png';
 
 const ProductInCart = ({ item }) => {
-  const [productAmount, setProductAmount] = useState(item.quantity)
-  const navigate = useNavigate()
+  const [productAmount, setProductAmount] = useState(item.quantity);
 
   const increment = () => {
-    setProductAmount(prevAmount => prevAmount + 1)
-  }
+    setProductAmount(prevAmount => prevAmount + 1);
+  };
 
   const decrement = () => {
-    setProductAmount((prevQuantity) => (prevQuantity > 0 ? prevQuantity - 1 : 0));
+    setProductAmount(prevQuantity => (prevQuantity > 0 ? prevQuantity - 1 : 0));
   };
 
   const handleInputChange = (event) => {
@@ -29,16 +27,34 @@ const ProductInCart = ({ item }) => {
   };
 
   const handleItemTrash = () => {
-    const localStorageCart = JSON.parse(localStorage.getItem('cart')) || []
+    const localStorageCart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    const updatedCart = localStorageCart.filter(i => i.product_id !== item.product_id)
+    const updatedCart = localStorageCart.filter(i => i.product_id !== item.product_id);
 
     localStorage.setItem('cart', JSON.stringify(updatedCart));
 
     console.log('Item removed. Updated cart:', updatedCart);
+    window.location.reload();
+  };
 
-    navigate('/cart')
-  }
+  const updateLocalStorage = (updatedQuantity) => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const existingProductIndex = cart.findIndex(i => i.product_id === item.product_id);
+
+    if (existingProductIndex >= 0) {
+      cart[existingProductIndex].quantity = updatedQuantity;
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart)); // Fixed typo here
+  };
+
+  useEffect(() => {
+    updateLocalStorage(productAmount);
+  }, [productAmount]);
+
+  const roundToTwoDecimals = (number) => {
+    return Number.parseFloat(number).toFixed(2);
+  };
 
   return (
     <div className='w-full h-25 flex py-5 gap-5'>
@@ -50,7 +66,6 @@ const ProductInCart = ({ item }) => {
       </div>
 
       <div className='w-1/4 h-14 border-y border-y-softBlack flex items-center justify-between poppins-regular'>
-        {/* TODO: BUTTON INCREMENT AND DECREMENT */}
         <button
           className='text-lg w-1/5 h-full'
           onClick={decrement}
@@ -74,14 +89,14 @@ const ProductInCart = ({ item }) => {
         onClick={handleItemTrash}
         className='w-8 h-8'
       >
-        <img src={trashIcon} alt='trash' className='w-full h-full'/>
+        <img src={trashIcon} alt='trash' className='w-full h-full' />
       </button>
       <p className='w-1/4 text-end text-2xl'>
         $
-        {(item.product_price * item.quantity)}
+        {roundToTwoDecimals(item.product_price * productAmount)}
       </p>
     </div>
-  )
-}
+  );
+};
 
-export default ProductInCart
+export default ProductInCart;
