@@ -24,7 +24,7 @@ const ProductInCart = ({ item }) => {
       }
     }
     get_products_details()
-  })
+  }, [item.product_id])
 
   const increment = () => {
     setProductAmount(prevAmount => prevAmount + 1);
