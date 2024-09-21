@@ -59,7 +59,6 @@ const Products = () => {
         </div>
         <div className='w-full h-max px-0 py-10'>
           <ul className='w-full flex'>
-            {/* TODO: CHANGE THE PRODUCT COUNT */}
             <CategoryProduct
               categoryName={'ACCESSORIES'}
               description={"Elevate your style with accessories that do more than just look good. Each piece is thoughtfully crafted from sustainable materials, blending fashion with a commitment to the planet. Wear your values with pride, knowing that every detail reflects a dedication."}

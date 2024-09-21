@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 const ViewCart = () => {
   const [productsInCart, setProductsInCart] = useState([])
 
-  // TODO: GET CART ITEM FROM LOCAL STORAGE
+  // useEffect to get product in cart in local storage
   useEffect(() => {
     const getProductsFromLocalStorage = () => {
       const cartLocalStorage = JSON.parse(localStorage.getItem('cart'))
@@ -50,6 +50,7 @@ const ViewCart = () => {
           <hr />
         </div>
 
+        {/* PRODUCT LIST */}
         <div className='p-5'>
           {productsInCart.map(item => (
             <ProductInCart item={item} key={item.product_name} />
