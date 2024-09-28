@@ -8,7 +8,7 @@ import RegularButton from '../../components/buttons/RegularButton'
 const Hero = () => {
   return (
     <section style={{ height: 'max-content' }} className='roboto-slab-regular bg-hero-image bg-cover bg-center text-softWhite flex flex-col gap-32'>
-      <div className='w-100 flex justify-between '>
+      <div className='w-100 flex flex-col lg:flex-row justify-between '>
         <h1 style={{ fontSize: '15rem', lineHeight: '1' }} className='roboto-slab-bold w-2/3 h-fit pl-12'>Choose Green, Live Clean.</h1>
         <div className='w-auto h-auto flex flex-col justify-end items-start gap-10 bg-transparent'>
           <h3 className='roboto-slab-bold text-xl w-3/4 h-fit'>EMBRACE EVERY MOMENT WITH OUR THOUGHTFULLY CRAFTED ECO-FRIENDLY PRODUCTS, DESIGNED TO ENCHANCE YOUR LIFESTYLE AND CARE FOR THE PLANET.</h3>
