@@ -86,8 +86,8 @@ const Login = () => {
   return (
     <main className='w-svw h-svh flex bg-gray-200 items-center justify-center poppins-regular'>
       <div className='w-3/4 h-4/6 bg-softWhite text-deepCharcoal flex items-center justify-center rounded-3xl p-5'>
-        <section className="w-full h-full">
-          <div className="container w-full px-6 py-24 mx-auto lg:py-32">
+        <section className="w-full h-max lg:full">
+          <div className="container w-full px-6 py-12 mx-auto lg:py-32">
             <div className="lg:flex w-full gap-2">
               {/* image and some heading text */}
               <div className="lg:w-1/2">
@@ -99,7 +99,7 @@ const Login = () => {
 
                 <h1 className="mt-4 text-gray-600 md:text-lg">Welcome back</h1>
 
-                <h1 className="mt-4 text-2xl font-medium text-gray-800 capitalize lg:text-3xl">
+                <h1 className="hidden lg:block mt-4 text-2xl font-medium text-gray-800 capitalize lg:text-3xl">
                   login to your account
                 </h1>
                 <div className='poppins-regular mt-3 text-mutedBlue'>Dont have an account?
